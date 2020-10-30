@@ -80,7 +80,40 @@ namespace SimpleSnakeGame
 
         private void updateGraphics(object sender, PaintEventArgs e)
         {
+            Graphics canvas = e.Graphics;
 
+            if (!this.settings.GameOver)
+            {
+                Brush snakeColor;
+
+                for (int i = 0; i < this.snake.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        snakeColor = Brushes.Black;
+                    }
+                    else
+                    {
+                        snakeColor = Brushes.Green;
+                    }
+
+                    canvas.FillEllipse(snakeColor, new Rectangle(
+                        this.snake[i].X * this.settings.Width,
+                        this.snake[i].Y * this.settings.Height,
+                        this.settings.Width, this.settings.Height));
+
+                    canvas.FillEllipse(Brushes.Red, new Rectangle(
+                        this.food.X * this.settings.Width,
+                        this.food.Y * this.settings.Height,
+                        this.settings.Width, this.settings.Height));
+                }
+            }
+            else
+            {
+                var gameOver = $"Game over {Environment.NewLine}Final score is {this.settings.Score} {Environment.NewLine}Press Enter to restart {Environment.NewLine}";
+                this.label3.Text = gameOver;
+                this.label3.Visible = true;
+            }
         }
 
         private void startGame()
