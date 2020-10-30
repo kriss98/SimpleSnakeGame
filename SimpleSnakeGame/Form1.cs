@@ -90,7 +90,54 @@ namespace SimpleSnakeGame
 
         private void movePlayer()
         {
+            for (int i = this.snake.Count - 1; i >= 0; i--)
+            {
+                if (i == 0)
+                {
+                    switch (this.settings.Direction)
+                    {
+                        case Direction.Right:
+                            this.snake[i].X++;
+                            break;
+                        case Direction.Left:
+                            this.snake[i].X--;
+                            break;
+                        case Direction.Up:
+                            this.snake[i].Y--;
+                            break;
+                        case Direction.Down:
+                            this.snake[i].Y++;
+                            break;
+                    }
 
+                    var maxXpos = this.pbCanvas.Size.Width / this.settings.Width;
+                    var maxYpos = this.pbCanvas.Size.Height / this.settings.Height;
+
+                    if (this.snake[i].X < 0 || this.snake[i].Y < 0 || this.snake[i].X > maxXpos ||
+                        this.snake[i].Y > maxYpos)
+                    {
+                        this.die();
+                    }
+
+                    for (int j = 1; j < this.snake.Count; j++)
+                    {
+                        if (this.snake[i].X == this.snake[j].X && this.snake[i].Y == this.snake[j].Y)
+                        {
+                            this.die();
+                        }
+                    }
+
+                    if (this.snake[0].X == this.food.X && this.snake[0].Y == this.food.Y)
+                    {
+                        this.eat();
+                    }
+                }
+                else
+                {
+                    this.snake[i].X = this.snake[i - 1].X;
+                    this.snake[i].Y = this.snake[i - 1].Y;
+                }
+            }
         }
 
         private void generateFood()
