@@ -118,7 +118,18 @@ namespace SimpleSnakeGame
 
         private void startGame()
         {
+            this.label3.Visible = false;
+            this.settings = new Settings();
+            this.snake.Clear();
+            var head = new Circle
+            {
+                X = 10,
+                Y = 5,
+            };
+            this.snake.Add(head);
+            this.label2.Text = this.settings.Score.ToString();
 
+            this.generateFood();
         }
 
         private void movePlayer()
