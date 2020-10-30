@@ -70,12 +70,12 @@ namespace SimpleSnakeGame
 
         private void keyisdown(object sender, KeyEventArgs e)
         {
-
+            Input.ChangeState(e.KeyCode, true);
         }
 
         private void keyisup(object sender, KeyEventArgs e)
         {
-
+            Input.ChangeState(e.KeyCode, false);
         }
 
         private void updateGraphics(object sender, PaintEventArgs e)
