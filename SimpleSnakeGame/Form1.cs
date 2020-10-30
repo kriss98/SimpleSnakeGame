@@ -186,17 +186,34 @@ namespace SimpleSnakeGame
 
         private void generateFood()
         {
+            var maxXpos = this.pbCanvas.Size.Width / this.settings.Width;
+            var maxYpos = this.pbCanvas.Size.Height / this.settings.Height;
 
+            Random rnd = new Random();
+            this.food = new Circle
+            {
+                X = rnd.Next(0, maxXpos),
+                Y = rnd.Next(0, maxYpos),
+            };
         }
 
         private void eat()
         {
+            var body = new Circle
+            {
+                X = this.snake[this.snake.Count - 1].X,
+                Y = this.snake[this.snake.Count - 1].Y,
+            };
 
+            this.snake.Add(body);
+            this.settings.Score += this.settings.Points;
+            this.label2.Text = this.settings.Score.ToString();
+            this.generateFood();
         }
 
         private void die()
         {
-
+            this.settings.GameOver = true;
         }
     }
 }
