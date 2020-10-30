@@ -12,6 +12,10 @@ namespace SimpleSnakeGame
 {
     public partial class Form1 : Form
     {
+        private List<Circle> snake = new List<Circle>();
+
+        private Circle food = new Circle();
+
         public Form1()
         {
             InitializeComponent();
@@ -33,6 +37,31 @@ namespace SimpleSnakeGame
         }
 
         private void updateGraphics(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void startGame()
+        {
+
+        }
+
+        private void movePlayer()
+        {
+
+        }
+
+        private void generateFood()
+        {
+
+        }
+
+        private void eat()
+        {
+
+        }
+
+        private void die()
         {
 
         }
